@@ -1,5 +1,5 @@
-require 'testrail/endpoints'
-require 'testrail/version'
+require 'testrail_api/endpoints'
+require 'testrail_api/version'
 
 require 'typhoeus'
 require 'json'
