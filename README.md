@@ -8,7 +8,7 @@ reference.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'testrail_api'
+gem 'testrail_api', '~> 0.1.1'
 ```
 
 And then execute:
