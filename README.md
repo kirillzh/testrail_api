@@ -1,7 +1,8 @@
-# Testrail API v2 client
+# Testrail API v2
 
-This is client for TestRail API v2. See official [documentation](http://docs.gurock.com/testrail-api2/start) for 
-reference.
+[TestRail API v2](http://docs.gurock.com/testrail-api2/start) wrapper, written in Ruby.
+
+[![Gem Version](https://badge.fury.io/rb/testrail_api.svg)](http://badge.fury.io/rb/testrail_api)
 
 ## Installation
 
@@ -25,6 +26,10 @@ Or install it yourself as:
 client = TestRail::Client.new('example.testrail.com', 'admin@example.com', 'pass')
 puts client.projects
 ```
+
+## Documentation
+
+[http://www.rubydoc.info/gems/testrail_api](http://www.rubydoc.info/gems/testrail_api)
 
 ## Development
 
