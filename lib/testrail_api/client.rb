@@ -33,7 +33,7 @@ module TestRail
     end
 
     def api_endpoint
-      @api_endpoint ||= File.join("#{scheme}://#{@server}", 'index.php?api/v2') if @server
+      @api_endpoint ||= File.join("#{scheme}://#{@server}", 'index.php?api/v2')
     end
 
     def user_agent
