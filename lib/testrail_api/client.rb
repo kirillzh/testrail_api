@@ -1,31 +1,35 @@
-require 'testrail_api/endpoints'
+require 'testrail_api/api'
+require 'testrail_api/default'
 require 'testrail_api/version'
-
-require 'typhoeus'
-require 'json'
 
 module TestRail
   class Client
-    attr_accessor :server
-    attr_accessor :username, :password
-    attr_accessor :verbose
+    include API
+
+    attr_reader :server, :email, :password
 
     # @param server [String] TestRail server host
     # @param email [String] TestRail email
     # @param password [String] TestRail password or API key
-    # @param opts [Hash] Optional parameters
-    # @option opts [Boolean] :verbose Print libcurl debug output to the console (STDERR) if true (default : false)
-    # @option opts [Boolean] :secure Use HTTPS if true (default: true)
-    def initialize(server, email, password, opts = {})
+    # @option [Boolean] :secure   Use HTTPS if true (default: true)
+    # @option [Boolean] :verbose  Print libcurl debug output to the console (STDERR) if true (default : false)
+    def initialize(server, email, password, secure: true, verbose: false)
       # required
-      @server                  = server
-      @username                = email
-      @password                = password
+      @server      = server
+      @email       = email
+      @password    = password
 
       # optional
-      @verbose                 = opts.fetch(:verbose, false)
-      @secure                  = opts.fetch(:secure, true)
-      Typhoeus::Config.verbose = verbose
+      @secure      = secure
+      self.verbose = verbose
+    end
+
+    def verbose=(bool)
+      Typhoeus::Config.verbose = bool
+    end
+
+    def verbose
+      Typhoeus::Config.verbose
     end
 
     def scheme
@@ -40,14 +44,6 @@ module TestRail
       @user_agent ||= "TestRail API v2 Gem #{VERSION}"
     end
 
-    def default_headers
-      @default_headers ||= {
-          'Accept'       => 'application/json',
-          'Content-Type' => 'application/json',
-          'User-Agent'   => user_agent
-      }
-    end
-
     def get(path, opts = {})
       request(:get, path, opts)
     end
@@ -56,12 +52,17 @@ module TestRail
       request(:post, path, opts)
     end
 
+    def credentials
+      "#{@email}:#{@password}"
+    end
+
     def request(method, path, opts = {})
       body = Typhoeus::Request.new(
           File.join(api_endpoint, path),
           { method:  method,
-            headers: default_headers,
-            userpwd: "#{@username}:#{@password}" }.merge(opts)
+            headers: Default::HEADERS,
+            userpwd: credentials
+          }.merge(opts)
       ).run.body
       JSON.parse(body)
     rescue JSON::ParserError

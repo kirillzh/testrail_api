@@ -3,6 +3,8 @@ module TestRail
     # Methods for the Milestones API
     #
     # @see http://docs.gurock.com/testrail-api2/reference-milestones
-    # TODO: implement
+    module Milestones
+      # TODO: implement
+    end
   end
 end

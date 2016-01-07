@@ -3,6 +3,8 @@ module TestRail
     # Methods for the Result Fields API
     #
     # @see http://docs.gurock.com/testrail-api2/reference-results-fields
-    # TODO: implement
+    module ResultFields
+      # TODO: implement
+    end
   end
 end

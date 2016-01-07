@@ -1,3 +1,5 @@
+require 'testrail_api/version'
+
 module TestRail
   module Default
     # Default User-Agent header
