@@ -9,7 +9,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'testrail_api', '~> 0.1.4'
+gem 'testrail_api', '~> 1.1.5'
 ```
 
 And then execute:

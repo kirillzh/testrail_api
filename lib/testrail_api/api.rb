@@ -1,3 +1,5 @@
+require 'core_ext/to_list'
+
 require 'testrail_api/client/case_fields'
 require 'testrail_api/client/case_types'
 require 'testrail_api/client/cases'

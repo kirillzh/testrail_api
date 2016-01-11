@@ -11,7 +11,7 @@ module TestRail
     # Default headers
     HEADERS    ||= {
         'Content-Type' => MEDIA_TYPE,
-        # 'Accept'       => MEDIA_TYPE,
+        'Accept'       => MEDIA_TYPE,
         'User-Agent'   => USER_AGENT
     }.freeze
   end

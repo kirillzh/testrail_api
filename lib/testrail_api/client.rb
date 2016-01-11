@@ -1,10 +1,12 @@
 require 'testrail_api/api'
 require 'testrail_api/default'
-require 'testrail_api/version'
+
+require 'typhoeus'
+require 'json'
 
 module TestRail
   class Client
-    include API
+    include TestRail::Client::API
 
     attr_reader :server, :email, :password
 
@@ -41,7 +43,7 @@ module TestRail
     end
 
     def user_agent
-      @user_agent ||= "TestRail API v2 Gem #{VERSION}"
+      @user_agent ||= "TestRail API v2 Gem #{TestRail::VERSION}"
     end
 
     def get(path, opts = {})
